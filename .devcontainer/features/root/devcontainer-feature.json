@@ -1,0 +1,77 @@
+{
+  "name": "ambient-lab root",
+  "id": "root",
+  "version": "5",
+  "description": "ambient-lab root feature",
+  "installsAfter": [
+    "ghcr.io/devcontainers/features/aws-cli",
+    "ghcr.io/devcontainers/features/github-cli",
+    "ghcr.io/eitsupi/devcontainer-features/jq-likes",
+    "ghcr.io/devcontainers/features/python"
+  ],
+  "containerEnv": {
+    "TZ": "Asia/Tokyo"
+  },
+  "customizations": {
+    "vscode": {
+      "settings": {
+        "editor.minimap.enabled": false,
+        "editor.stickyScroll.enabled": true,
+        "editor.guides.bracketPairs": true,
+        "editor.tabSize": 2,
+        "editor.defaultFormatter": "esbenp.prettier-vscode",
+        "editor.formatOnSave": true,
+        "editor.codeActionsOnSave": {
+          "source.fixAll.eslint": true
+        },
+        "files.exclude": {
+          "**/.git": true,
+          "**/.svn": true,
+          "**/.hg": true,
+          "**/CVS": true,
+          "**/.DS_Store": true,
+          "**/Thumbs.db": true,
+          "**/node_modules": true,
+          "**/__pycache__": true,
+          "**/.pytest_cache": true
+        },
+        "files.autoSave": "onFocusChange",
+        "terminal.integrated.copyOnSelection": true,
+        "terminal.integrated.automationProfile.linux": {
+          "path": "/usr/bin/zsh"
+        },
+        "terminal.integrated.profiles.linux": {
+          "terminal": {
+            "path": "/usr/bin/zsh"
+          }
+        },
+        "terminal.integrated.defaultProfile.linux": "zsh",
+        "terminal.external.osxExec": "${containerEnv:TERMINAL_APP:Terminal.app}",
+        "workbench.iconTheme": "material-icon-theme",
+        "workbench.colorTheme": "${containerEnv:IDE_THEME:Default Dark+}",
+        "[markdown]": {
+          "files.trimTrailingWhitespace": false
+        }
+      },
+      "extensions": [
+        "MS-vsliveshare.vsliveshare",
+        "pkief.material-icon-theme",
+        "zhuangtongfa.material-theme",
+        "eamodio.gitlens",
+        "MS-CEINTL.vscode-language-pack-ja",
+        "amazonwebservices.aws-toolkit-vscode",
+        "VisualStudioExptTeam.vscodeintellicode",
+        "oderwat.indent-rainbow",
+        "mosapride.zenkaku",
+        "aaron-bond.better-comments",
+        "shardulm94.trailing-spaces",
+        "bungcip.better-toml",
+        "mutantdino.resourcemonitor",
+        "shd101wyy.markdown-preview-enhanced",
+        "mikestead.dotenv",
+        "esbenp.prettier-vscode",
+        "github.copilot"
+      ]
+    }
+  }
+}

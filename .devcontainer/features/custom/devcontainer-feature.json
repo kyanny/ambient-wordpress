@@ -1,0 +1,16 @@
+{
+  "name": "ambient-lab custom",
+  "id": "custom",
+  "version": "5.1",
+  "description": "ambient-lab custom feature",
+  "containerEnv": {
+    "TZ": "Asia/Tokyo"
+  },
+  "customizations": {
+    "vscode": {
+      "settings": {},
+      "extensions": []
+    }
+  },
+  "installsAfter": ["./features/root"]
+}

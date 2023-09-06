@@ -1,0 +1,40 @@
+
+# ==== コミットメッセージフォーマット(テンプレート) ====
+<Version Prefix>: #<Issue Number> <Title>
+# 例) fix: #1 ログイン機能を追加
+#
+# Commit body...
+# 例) ログイン機能を追加しました。
+
+# ==== Version ====
+# | Prefix | Release Type | Increment |
+# | --- | --- | --- | 
+# | fix | Patch Release | v0.0.1 |
+# | feat | Mainor Release | v0.1.0 |
+# | perf | Major Relase | v1.0.0 |
+
+# ==== Emojis ====
+# ✏️  :pencil2: ドキュメンテーションの作成
+# 🐛  :bug: バグ修正
+# 👍  :+1: 機能改善
+# ✨  :sparkles: 部分的な新機能開発
+# 🎉  :tada: 大きな新規機能開発
+# ♻️  :recycle: リファクタリング
+# 🚿  :shower: 廃止された機能や特徴の削除
+# 💚  :green_heart: テストやCIの修正・改善
+# 👕  :shirt: Lintエラーの修正やコードスタイルの修正
+# 🚀  :rocket: パフォーマンス改善
+# 🆙  :up: 更新、例えば依存ライブラリの更新など
+# 🔒  :lock: 新機能の範囲制限
+# 👮  :cop: セキュリティ関連の改善
+
+# ==== 優れたGitコミットメッセージの7つのルール ====
+# 1. 件名と本文を空行で区切る
+# 2. 件名は50文字以内までにする
+# 3. 件名は大文字で始める
+# 4. 件名をピリオドや句読点で終わらせない
+# 5. 件名は命令形な雰囲気で使用する
+# 6. 本文を72文字ごとに改行する
+# 7. 本文を使用して、何を、なぜ、どのようにしたかを記述する
+#
+# How to Write a Git Commit Message: https://cbea.ms/git-commit/

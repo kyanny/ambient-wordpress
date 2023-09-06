@@ -1,0 +1,40 @@
+#!/bin/bash
+
+echo -e "\033[37;1m🪝 Running Git Hooks: commit-msg\033[0m"
+
+# コミットメッセージを定義
+
+MSG="$(cat "$1")"
+readonly MSG
+
+# 終了コードを定義。0: OK, 1: NG
+
+code=0
+
+# issue 番号の存在チェック
+
+echo -en " - issue 番号の存在チェック: "
+readonly ISSUE_NO="\#[1-9]"
+if ! echo "$MSG" | grep -q "${ISSUE_NO}"; then
+echo -e "\033[31;22mNG"
+echo -e "================================================================"
+echo -e "コミットメッセージに issue 番号が含まれていません。"
+echo -e ""
+echo -e "Example: #1234"
+echo -e "================================================================\033[0m\n"
+code=1
+else
+echo -e "\033[32;22mOK\033[0m"
+fi
+
+# 終了宣言
+
+if [ ${code} -eq 0 ]; then
+echo ""
+echo -e "\033[32;1m✨ALL PASS!!\033[0m\n\n"
+else
+echo ""
+echo -e "\033[31;1mGit Hooks: commit-msg: NG\033[0m\n\n"
+fi
+
+exit ${code}
