@@ -1,0 +1,32 @@
+version: '3.8'
+
+services:
+  wordpress:
+    depends_on:
+      - db
+    build: 
+      context: ./services/wordpress
+      args:
+        MYSQL_DATABASE: wp
+        MYSQL_USER: wp
+        MYSQL_PASSWORD: wpwpwp
+        MYSQL_HOST: db
+    ports:
+      - "80:80"
+
+
+  db:
+    build: 
+      context: ./services/db
+      dockerfile: Dockerfile
+    environment:
+      MYSQL_RANDOM_ROOT_PASSWORD: 1
+      MYSQL_DATABASE: wp
+      MYSQL_USER: wp
+      MYSQL_PASSWORD: wpwpwp
+    volumes:
+      - db_data:/var/lib/mysql
+    command: [ "mysqld", "--character-set-server=utf8mb4", "--collation-server=utf8mb4_unicode_ci" ]
+
+volumes:
+  db_data:

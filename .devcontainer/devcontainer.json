@@ -1,35 +1,8 @@
 {
-  "name": "ambient-dev",
-  "image": "mcr.microsoft.com/devcontainers/base:bullseye",
-  "workspaceFolder": "/workspace",
-  "workspaceMount": "source=${localWorkspaceFolder},target=/workspace,type=bind,consistency=cached",
-  "features": {
-    // root feature
-    "ghcr.io/devcontainers/features/aws-cli:1": {
-      "version": "2.13.1"
-    },
-    "ghcr.io/devcontainers/features/github-cli:1": {
-      "version": "2.32.0"
-    },
-    "ghcr.io/eitsupi/devcontainer-features/jq-likes:1.0.1": {
-      "jqVersion": "jq-1.6"
-    },
-    "ghcr.io/devcontainers/features/python:1": {
-      "version": "3.9.17"
-    },
-    "./features/root": {},
-    // custom feature
-    "./features/custom": {}
-  },
-  "postCreateCommand": {
-    "main": "find /workspace/.devcontainer/features -name 'post-create-command-main.sh' -exec bash {} \\;",
-    "test": "find /workspace/.devcontainer/features -name 'post-create-command-test.py' -exec py.test -v  {} \\;"
-  },
-  "customizations": {
-    "vscode": {
-      "settings": {},
-      "extensions": []
-    }
-  },
-  "remoteUser": "vscode"
+	"name": "test",
+	"dockerComposeFile": "../docker-compose.yml",
+	"forwardPorts": [80],
+	"remoteUser": "root",
+	"service":"wordpress",
+	"workspaceFolder": "/var/www/html", //dockerコンテナのパス
 }
