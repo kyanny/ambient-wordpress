@@ -46,6 +46,11 @@ RUN sed -i "s/username_here/$MYSQL_USER/g" wp-config.php
 RUN sed -i "s/password_here/$MYSQL_PASSWORD/g" wp-config.php
 RUN sed -i "s/localhost/$MYSQL_HOST/g" wp-config.php
 
+ADD wp-config-extra.txt .
+RUN cat wp-config-extra.txt >> wp-config.php
+
+# RUN echo 'define("FORCE_SSL_ADMIN", true);' >> wp-config.php
+
 # Apacheをフォアグラウンドで動かす
 CMD ["/usr/sbin/httpd", "-D", "FOREGROUND"]
 
