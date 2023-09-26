@@ -22,6 +22,16 @@ RUN ln -snf /usr/share/zoneinfo/$TZ /etc/localtime && echo $TZ > /etc/timezone
 # # Apacheの設定
 # RUN sed -i '/<Directory "\/var\/www\/html">/,/<\/Directory>/ s/AllowOverride None/AllowOverride All/' /etc/httpd/conf/httpd.conf
 
+RUN yum -y install mod_ssl
+RUN openssl genrsa -out server.key
+RUN echo "subjectAltName = DNS:localhost, DNS:*.app.github.dev" > extfile.txt
+RUN openssl req -new -key server.key -out server.csr -subj "/CN=localhost"
+RUN openssl x509 -req -days 365 -in server.csr -signkey server.key -extfile extfile.txt -out server.crt
+RUN cp -a server.key /etc/httpd/conf
+RUN cp -a server.crt /etc/httpd/conf
+RUN sed -i.bak -e "s/^SSLCertificateFile .*$/SSLCertificateFile \/etc\/httpd\/conf\/server.crt/" -e "s/^SSLCertificateKeyFile .*$/SSLCertificateKeyFile \/etc\/httpd\/conf\/server.key/" /etc/httpd/conf.d/ssl.conf
+
+
 #WP CLI インストール
 WORKDIR /var/www/html
 RUN curl -O https://raw.githubusercontent.com/wp-cli/builds/gh-pages/phar/wp-cli.phar 
