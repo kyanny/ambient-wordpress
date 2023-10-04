@@ -57,9 +57,8 @@ RUN sed -i "s/password_here/$MYSQL_PASSWORD/g" wp-config.php
 RUN sed -i "s/localhost/$MYSQL_HOST/g" wp-config.php
 
 ADD wp-config-extra.txt .
-RUN cat wp-config-extra.txt >> wp-config.php
+RUN perl -i.bak -nle 'BEGIN{open $fh, "<", "wp-config-extra.txt"; $content = do { local $/; <$fh> }}; if(/Add any custom values between this line and the "stop editing" line\./){print; print $content} else {print}' wp-config.php
 
-# RUN echo 'define("FORCE_SSL_ADMIN", true);' >> wp-config.php
 
 # Apacheをフォアグラウンドで動かす
 CMD ["/usr/sbin/httpd", "-D", "FOREGROUND"]
